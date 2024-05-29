@@ -28,14 +28,6 @@ jobs:
         run: |
           find . -name "*.svg" | xargs ls -l
 
-      - name: Commit and Push Diagrams
-        uses: EndBug/add-and-commit@v9
-        with:
-          author_name: 'github-actions[bot]'
-          author_email: 'github-actions[bot]@users.noreply.github.com'
-          message: ':rocket: Add generated SVG diagrams'
-          add: '.'
-          push: true
 
       - name: push diff
         run: |
