@@ -31,6 +31,7 @@ jobs:
       # 変更されたファイルをコミット
       - name: Commit Diagrams
         run: |
+          cd puml_GA
           git config --local user.email "daichi_kiyozaki@nuco.co.jp"
           git config --local user.name "daichi-kiyozaki"
           git add .
