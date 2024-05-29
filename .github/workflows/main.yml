@@ -18,7 +18,7 @@ jobs:
       # .pumlファイルを処理してSVGに変換
       - name: Process Diagrams
         run: |
-          mkdir -p output
+          cd puml
           for file in $(find . -name "*.puml"); do
             java -jar plantuml-1.2024.5.jar -svg "$file" -charset UTF-8
           done
