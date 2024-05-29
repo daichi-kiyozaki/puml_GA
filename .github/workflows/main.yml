@@ -38,6 +38,6 @@ jobs:
           # 保存ファイル名（name.zip）
           name: output
           # 保存するファイル
-          path: test.svg
+          path: puml/test.svg
           # 保存期間（日）
           retention-days: 3
