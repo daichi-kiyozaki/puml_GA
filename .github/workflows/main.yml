@@ -41,4 +41,5 @@ jobs:
             git add .; \
             git commit -m "GitHub Actions から差分を Push"; \
             git push origin HEAD:${GITHUB_REF}; \
-          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
