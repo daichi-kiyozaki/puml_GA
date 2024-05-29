@@ -28,13 +28,12 @@ jobs:
       - name: Display SVG Files
         run: |
           find . -name "*.svg" | xargs ls -l
+          pwd
+          ls -a
 
       # 成果物アップロード
       - name: artifact upload
         uses: actions/upload-artifact@v2.2.0
-        run : |
-          pwd
-          ls
         with:
           # 保存ファイル名（name.zip）
           name: output
