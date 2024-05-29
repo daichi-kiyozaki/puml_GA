@@ -28,17 +28,13 @@ jobs:
         run: |
           find . -name "*.svg" | xargs ls -l
 
-      # 変更されたファイルをコミット
-      - name: Commit Diagrams
-        run: |
-          cd puml_GA
-          git config --local user.email "daichi_kiyozaki@nuco.co.jp"
-          git config --local user.name "daichi-kiyozaki"
-          git add .
-          git commit -m ":rocket: Add generated SVG diagrams" || exit 0
-
-      # 変更をプッシュ
-      - name: Push Diagrams
-        uses: ad-m/github-push-action@master
+      - name: Commit and Push Diagrams
+        uses: EndBug/add-and-commit@v9
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          author_name: 'github-actions[bot]'
+          author_email: 'github-actions[bot]@users.noreply.github.com'
+          message: ':rocket: Add generated SVG diagrams'
+          add: '.'
+          push: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
