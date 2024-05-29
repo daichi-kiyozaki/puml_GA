@@ -12,7 +12,7 @@ jobs:
 
       # リポジトリのチェックアウト
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
 
       # .pumlファイルを処理してSVGに変換
@@ -40,4 +40,4 @@ jobs:
       - name: Push Diagrams
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
