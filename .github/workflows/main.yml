@@ -36,5 +36,14 @@ jobs:
           message: ':rocket: Add generated SVG diagrams'
           add: '.'
           push: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: push diff
+        run: |
+          git remote set-url origin https://github.com/daichi-kiyozaki/puml_GA.git
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          if (git diff --shortstat | grep '[0-9]'); then \
+            git add .; \
+            git commit -m "GitHub Actions から差分を Push"; \
+            git push origin HEAD:${GITHUB_REF}; \
+          fi
