@@ -29,13 +29,13 @@ jobs:
         run: |
           find . -name "*.svg" | xargs ls -l
 
-      - name: Commit Diagrams
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m ":rocket: adding generated diagrams" || exit 0
-      - name: Push Diagrams
-        uses: ad-m/github-push-action@master
+      # 成果物アップロード
+      - name: artifact upload
+        uses: actions/upload-artifact@v2.2.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 保存ファイル名（name.zip）
+          name: output
+          # 保存するファイル
+          path: test.svg
+          # 保存期間（日）
+          retention-days: 3
