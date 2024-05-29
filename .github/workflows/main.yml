@@ -33,10 +33,11 @@ jobs:
       - name: push diff
         run: |
           pwd
-          git remote set-url origin https://github.com/daichi-kiyozaki/puml_GA.git
+          git remote set-url origin https://github.com/daichi-kiyozaki/test_svg_create.git
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "daichi_kiyozki@nuco.co.jp"
           if (git diff --shortstat | grep '[0-9]'); then \
+            git init
             git add .; \
             git commit -m "GitHub Actions から差分を Push"; \
             git push origin HEAD:${GITHUB_REF}; \
