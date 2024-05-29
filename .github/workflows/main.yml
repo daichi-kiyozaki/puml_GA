@@ -29,17 +29,12 @@ jobs:
         run: |
           find . -name "*.svg" | xargs ls -l
 
-
-      - name: push diff
+      - name: Commit Diagrams
         run: |
-          pwd
-          git init
-          git remote set-url origin https://github.com/daichi-kiyozaki/test_svg_create.git
-          git config --global user.email "daichi_kiyozaki@nuco.co.jp"
-          git config --global user.name "daichi-kiyozaki"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add .
-          git status
-          git commit -m "GitHub Actions から差分を Push"
-          git push origin master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git commit -m ":rocket: adding generated diagrams" || exit 0
+      - name: Push Diagrams
+        uses: ad-m/github-push-action@master
+        with:
