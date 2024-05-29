@@ -29,8 +29,6 @@ jobs:
       - name: Display SVG Files
         run: |
           find . -name "*.svg" | xargs ls -l
-          pwd
-          ls -a
 
       # 成果物アップロード
       - name: artifact upload
@@ -39,6 +37,8 @@ jobs:
           # 保存ファイル名（name.zip）
           name: output
           # 保存するファイル
-          path: puml/test.svg
+          for file in $(find . -name "*.puml"); do
+            path: "$file"
+          done
           # 保存期間（日）
           retention-days: 3
