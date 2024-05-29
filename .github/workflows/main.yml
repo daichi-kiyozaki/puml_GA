@@ -30,6 +30,9 @@ jobs:
         run: |
           find . -name "*.svg" | xargs ls -l
           pwd
+          ls -a
+          cd puml
+          ls -a
 
       # 成果物アップロード
       - name: artifact upload
@@ -39,7 +42,7 @@ jobs:
           name: output
           # 保存するファイル
           path: |
-            $(find ./puml -name "*.puml")
+            $(find . -name "*.puml")
 
           # 保存期間（日）
           retention-days: 3
