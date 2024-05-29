@@ -40,6 +40,6 @@ jobs:
           git add .
           git status
           git commit -m "GitHub Actions から差分を Push"
-          git push origin
+          git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
