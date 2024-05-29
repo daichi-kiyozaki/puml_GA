@@ -32,7 +32,7 @@ jobs:
 
       - name: push diff
         run: |
-        cd ..
+          cd ..
           git remote set-url origin https://github.com/daichi-kiyozaki/puml_GA.git
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "daichi_kiyozki@nuco.co.jp"
