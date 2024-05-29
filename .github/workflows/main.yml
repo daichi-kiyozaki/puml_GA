@@ -34,7 +34,7 @@ jobs:
         run: |
           pwd
           git init
-          git remote set-url origin https://github.com/daichi-kiyozaki/test_svg_create.git
+          git remote set-url origin https://github.com/daichi-kiyozaki/puml_GA.git
           git config --global user.email "daichi_kiyozaki@nuco.co.jp"
           git config --global user.name "daichi-kiyozaki"
           git add .
