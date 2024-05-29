@@ -24,6 +24,7 @@ jobs:
           for file in $(find . -name "*.puml"); do
             java -jar plantuml-1.2024.5.jar -svg "$file" -charset UTF-8
           done
+          mv ./*.svg ./output
 
       # 生成されたSVGファイルの表示（デバッグ用）
       - name: Display SVG Files
@@ -41,8 +42,7 @@ jobs:
           # 保存ファイル名（name.zip）
           name: output
           # 保存するファイル
-          path: |
-            $(find ./puml -name "*.svg")
+          path: ./output
 
           # 保存期間（日）
           retention-days: 3
