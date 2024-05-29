@@ -1,8 +1,5 @@
 name: Convert PUML to SVG
-on:
-  push:
-    paths:
-      - '**/*.puml'  # プッシュされたすべての .puml ファイルを対象にします
+on: push
 jobs:
   convert_puml_to_svg:
     runs-on: ubuntu-latest
