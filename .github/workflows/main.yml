@@ -9,6 +9,7 @@ jobs:
         run: |
           sudo apt-get install graphviz
           sudo apt-get install plantuml
+          sudo apt-get install fonts-noto-cjk
 
       # リポジトリのチェックアウト
       - name: Checkout Repository
