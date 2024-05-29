@@ -32,15 +32,13 @@ jobs:
 
       # 成果物アップロード
       - name: artifact upload
-        run : |
-          cd puml
         uses: actions/upload-artifact@v2.2.0
         with:
           # 保存ファイル名（name.zip）
           name: output
           # 保存するファイル
           path: |
-            $(find . -name "*.puml")
+            $(find ./puml -name "*.puml")
 
           # 保存期間（日）
           retention-days: 3
