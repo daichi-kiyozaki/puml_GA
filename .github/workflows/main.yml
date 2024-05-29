@@ -37,8 +37,8 @@ jobs:
           # 保存ファイル名（name.zip）
           name: output
           # 保存するファイル
-          for file in $(find . -name "*.puml"); do
-            path: "$file"
-          done
+          path: |
+            $(find . -name "*.puml")
+
           # 保存期間（日）
           retention-days: 3
