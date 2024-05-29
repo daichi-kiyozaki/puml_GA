@@ -1,40 +1,46 @@
-# /${PlantUMLのファイルが置いてあるディレクトリ}/*.puml のソースコードから画像ファイルを生成する
-# トリガー：上記のソースコードの変更・追加がpushされること
-# 実行環境：macOS Big Sur 11.0
-name: Create PlantUML Images
-
-# トリガー
+name: Convert PUML to SVG
 on:
   push:
     paths:
-      - $ puml/*.puml #eg. docs/sequence-diagrams/*.puml
-
-# 実行内容
+      - '**/*.puml'  # プッシュされたすべての .puml ファイルを対象にします
 jobs:
-  build:
-    runs-on: macos-11.0
+  convert_puml_to_svg:
+    runs-on: ubuntu-latest
     steps:
-      #git checkout
-      - uses: actions/checkout@v2
-      #PlantUMLのパッケージインストール
-      - name: Install packages
+      # 必要な依存関係のインストール
+      - name: Install Dependencies
         run: |
-          brew install plantuml
-      #画像生成（最後のlsはGitActionのコンソール上で結果確認するため）
-      - name: Create Images
+          sudo apt-get install graphviz
+          sudo apt-get install plantuml
+
+      # リポジトリのチェックアウト
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+
+      # .pumlファイルを処理してSVGに変換
+      - name: Process Diagrams
         run: |
-          cd puml
-          for puml in `ls -a *.puml`
-          do
-            cat ./${puml} | plantuml -tsvg -p > ./${puml%.*}.svg
+          mkdir -p output
+          for file in $(find . -name "*.puml"); do
+            java -jar plantuml-1.2024.5.jar -svg "$file" -charset UTF-8
           done
-          ls -l
-      #git commit & git push
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v5
+
+      # 生成されたSVGファイルの表示（デバッグ用）
+      - name: Display SVG Files
+        run: |
+          find . -name "*.svg" | xargs ls -l
+
+      # 変更されたファイルをコミット
+      - name: Commit Diagrams
+        run: |
+          git config --local user.email "daichi_kiyozaki@nuco.co.jp"
+          git config --local user.name "daichi-kiyozaki"
+          git add .
+          git commit -m ":rocket: Add generated SVG diagrams" || exit 0
+
+      # 変更をプッシュ
+      - name: Push Diagrams
+        uses: ad-m/github-push-action@master
         with:
-          message: 'Create image files by GitHub Action(create-plantuml-images.yml).'
-          add: './$ /*'
-          push: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # ここはおまじない的に必須
+          github_token: ${{ secrets.GITHUB_TOKEN }}
