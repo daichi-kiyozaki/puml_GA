@@ -7,7 +7,7 @@ name: Create PlantUML Images
 on:
   push:
     paths:
-      - $ *.puml #eg. docs/sequence-diagrams/*.puml
+      - $ puml/*.puml #eg. docs/sequence-diagrams/*.puml
 
 # 実行内容
 jobs:
@@ -23,6 +23,7 @@ jobs:
       #画像生成（最後のlsはGitActionのコンソール上で結果確認するため）
       - name: Create Images
         run: |
+          cd puml
           for puml in `ls -a *.puml`
           do
             cat ./${puml} | plantuml -tsvg -p > ./${puml%.*}.svg
