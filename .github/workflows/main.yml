@@ -19,6 +19,7 @@ jobs:
       - name: Process Diagrams
         run: |
           ls -a
+          cd puml
           for file in $(find . -name "*.puml"); do
             java -jar plantuml-1.2024.5.jar -svg "$file" -charset UTF-8
           done
