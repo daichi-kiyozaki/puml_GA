@@ -33,13 +33,13 @@ jobs:
       - name: push diff
         run: |
           pwd
+          git init
           git remote set-url origin https://github.com/daichi-kiyozaki/test_svg_create.git
-          git config --global user.name "${GITHUB_ACTOR}"
-          git config --global user.email "daichi_kiyozki@nuco.co.jp"
-          if (git diff --shortstat | grep '[0-9]'); then \
-            git init
-            git add .; \
-            git commit -m "GitHub Actions から差分を Push"; \
-            git push origin HEAD:${GITHUB_REF}; \
+          git config --global user.email "daichi_kiyozaki@nuco.co.jp"
+          git config --global user.name "daichi-kiyozaki"
+          git add .
+          git status
+          git commit -m "GitHub Actions から差分を Push"
+          git push origin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
