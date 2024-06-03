@@ -3,7 +3,7 @@ skinparam {
    defaultFontName NotoSansCJKjp-Regular
    }
    interface "Cloud Scheduler" as CloudScheduler
-   note right of CloudScheduler : Runs once a day
+   note right of CloudScheduler : よろしくお願いします
 
    agent CronUpdateShops
    agent QueueSaveShop as QueueSaveShop1
