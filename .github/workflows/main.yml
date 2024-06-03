@@ -7,7 +7,6 @@ jobs:
       # 必要な依存関係のインストール
       - name: Install Dependencies
         run: |
-          sudo apt-get install graphviz
           sudo apt-get install plantuml
           sudo apt-get install fonts-noto-cjk
 
@@ -30,10 +29,7 @@ jobs:
       - name: Display SVG Files
         run: |
           find . -name "*.svg" | xargs ls -l
-          pwd
-          ls -a
-          cd puml
-          ls -a
+
 
       # 成果物アップロード
       - name: artifact upload
