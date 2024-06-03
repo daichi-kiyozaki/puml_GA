@@ -2,7 +2,7 @@
 skinparam {
    defaultFontName NotoSansCJKjp-Regular
    }
-   interface "Cloud Scheduler" as 第一カレンダー
+   interface "Cloud Scheduler" as CloudScheduler
    note right of CloudScheduler : Runs once a day
 
    agent CronUpdateShops
