@@ -7,6 +7,7 @@ jobs:
       # 必要な依存関係のインストール
       - name: Install Dependencies
         run: |
+          sudo apt-get install fonts-noto-cjk
 
       # リポジトリのチェックアウト
       - name: Checkout Repository
@@ -18,8 +19,11 @@ jobs:
         run: |
           ls -a
           cd puml
+          mkdir output
           for file in $(find . -name "*.puml"); do
             java -jar plantuml-1.2024.5.jar -svg "$file" -charset UTF-8
+            svg_file="${file%.puml}.svg"
+            mv "$svg_file" ./output
           done
 
       # 生成されたSVGファイルの表示（デバッグ用）
