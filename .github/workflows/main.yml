@@ -7,7 +7,9 @@ jobs:
       # 必要な依存関係のインストール
       - name: Install Dependencies
         run: |
-          sudo apt-get install fonts-noto-cjk
+         sudo apt-get install graphviz
+         sudo apt-get install plantuml
+         sudo apt-get install fonts-noto-cjk
 
       # リポジトリのチェックアウト
       - name: Checkout Repository
