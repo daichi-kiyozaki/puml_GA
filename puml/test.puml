@@ -2,7 +2,7 @@
 skinparam {
    defaultFontName NotoSansCJKjp-Regular
    }
-   interface "Cloud Scheduler" as CloudScheduler
+   interface "剛田武" as CloudScheduler
    note right of CloudScheduler : よろしくお願いします
 
    agent CronUpdateShops
