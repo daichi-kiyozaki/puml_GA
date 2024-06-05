@@ -1,7 +1,4 @@
 @startuml
-skinparam {
-   defaultFontName NotoSansCJKjp-Regular
-   }
    interface "剛田武" as CloudScheduler
    note right of CloudScheduler : よろしくお願いします
 
