@@ -23,7 +23,8 @@ jobs:
           cd puml
           mkdir output
           for file in $(find . -name "*.puml"); do
-            java -jar plantuml-1.2024.5.jar -svg "$file" -charset UTF-8
+      # java -jar plantuml-1.2024.5.jar -svg "$file" -charset UTF-8
+            cat "$file" | docker run --rm -i think/plantuml > "${file%.puml}.svg"
             svg_file="${file%.puml}.svg"
             mv "$svg_file" ./output
           done
